@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ziad Mahmoud — DevOps Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0e1a;
+    --bg2: #111827;
+    --bg3: #1a2235;
+    --border: rgba(99,179,237,0.15);
+    --border2: rgba(99,179,237,0.3);
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --accent: #63b3ed;
+    --accent2: #68d391;
+    --accent3: #f6ad55;
+    --red: #fc8181;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,14,26,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    transition: color 0.2s;
+    letter-spacing: 0.03em;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section { padding: 100px 0; }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(99,179,237,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99,179,237,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  h1 span { color: var(--accent); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 10px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0a0e1a;
+    font-weight: 600;
+    border: 1px solid var(--accent);
+  }
+
+  .btn-primary:hover { background: #90cdf4; border-color: #90cdf4; }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--border2);
+  }
+
+  .btn-outline:hover { border-color: var(--accent); background: rgba(99,179,237,0.05); }
+
+  /* STATUS BADGE */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(104,211,145,0.1);
+    border: 1px solid rgba(104,211,145,0.25);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-family: var(--mono);
+    color: var(--accent2);
+    margin-bottom: 2rem;
+  }
+
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent2);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* SECTION HEADER */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    color: var(--text);
+  }
+
+  h2 .dim { color: var(--muted); font-weight: 300; }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    margin-bottom: 1rem;
+    font-size: 15px;
+  }
+
+  .about-text p strong { color: var(--text); font-weight: 500; }
+
+  .info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .info-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-family: var(--mono);
+  }
+
+  .info-list .label { color: var(--muted); min-width: 80px; }
+  .info-list .value { color: var(--text); }
+  .info-list .value a { color: var(--accent); text-decoration: none; }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-2px);
+  }
+
+  .skill-icon {
+    font-size: 24px;
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-name {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .skill-level {
+    font-size: 12px;
+    font-family: var(--mono);
+    color: var(--muted);
+  }
+
+  .skill-bar {
+    height: 2px;
+    background: var(--bg3);
+    border-radius: 2px;
+    margin-top: 12px;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--accent);
+    transition: width 1s ease;
+  }
+
+  /* CERTS */
+  .cert-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s;
+  }
+
+  .cert-card:hover { border-color: var(--border2); border-left-color: var(--accent); }
+
+  .cert-title { font-weight: 500; margin-bottom: 4px; }
+  .cert-org { font-size: 13px; font-family: var(--mono); color: var(--muted); }
+
+  .cert-badge {
+    font-size: 11px;
+    font-family: var(--mono);
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-progress {
+    background: rgba(246,173,85,0.1);
+    color: var(--accent3);
+    border: 1px solid rgba(246,173,85,0.25);
+  }
+
+  .badge-done {
+    background: rgba(104,211,145,0.1);
+    color: var(--accent2);
+    border: 1px solid rgba(104,211,145,0.25);
+  }
+
+  /* PROJECTS */
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s;
+  }
+
+  .project-card:hover { border-color: var(--border2); }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-title {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .project-link {
+    font-size: 12px;
+    font-family: var(--mono);
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .project-link:hover { color: var(--accent); }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-family: var(--mono);
+    padding: 3px 10px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--muted);
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .contact-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .contact-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .contact-icon { font-size: 24px; }
+  .contact-label { font-size: 12px; font-family: var(--mono); color: var(--muted); }
+  .contact-value { font-size: 14px; font-weight: 500; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    h1 { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">ziad@devops:~$</div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#certs">certs</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="grid-bg"></div>
+  <div class="container">
+    <div class="status-badge">
+      <span class="dot"></span>
+      Open to opportunities abroad
+    </div>
+    <div class="hero-tag">DevOps & Linux Engineer</div>
+    <h1>Ziad<br><span>Mahmoud</span></h1>
+    <p class="hero-sub">
+      Building reliable systems and automating infrastructure.
+      Focused on Linux administration, DevOps practices, and cloud technologies.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary">Get in touch →</a>
+      <a href="https://github.com/Ziadma7moud" class="btn btn-outline" target="_blank">GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">// about me</div>
+    <h2>Who I am <span class="dim">& what I do</span></h2>
+    <div class="about-grid fade-in">
+      <div class="about-text">
+        <p>
+          I'm a <strong>Linux & DevOps engineer in progress</strong> based in Egypt,
+          passionate about system administration, automation, and building reliable infrastructure.
+        </p>
+        <p>
+          Currently preparing for my <strong>RHCSA (EX200)</strong> certification after completing
+          the Red Hat System Administration I & II courses through MaharaTech.
+        </p>
+        <p>
+          My goal is to work abroad as a <strong>DevOps / System Administrator</strong>,
+          contributing to teams that value automation, reliability, and clean infrastructure.
+        </p>
+      </div>
+      <ul class="info-list">
+        <li>
+          <span class="label">location</span>
+          <span class="value">Egypt 🇪🇬</span>
+        </li>
+        <li>
+          <span class="label">focus</span>
+          <span class="value">DevOps & SysAdmin</span>
+        </li>
+        <li>
+          <span class="label">goal</span>
+          <span class="value">Work abroad</span>
+        </li>
+        <li>
+          <span class="label">github</span>
+          <span class="value"><a href="https://github.com/Ziadma7moud" target="_blank">Ziadma7moud ↗</a></span>
+        </li>
+        <li>
+          <span class="label">linkedin</span>
+          <span class="value"><a href="https://www.linkedin.com/in/ziad-mahmoud-6452793b8" target="_blank">ziad-mahmoud ↗</a></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">// skills</div>
+    <h2>Tools & <span class="dim">Technologies</span></h2>
+    <div class="skills-grid fade-in">
+      <div class="skill-card">
+        <div class="skill-icon">☁️</div>
+        <div class="skill-name">AWS Cloud</div>
+        <div class="skill-level">Intermediate</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🐧</div>
+        <div class="skill-name">Linux (RHEL 9)</div>
+        <div class="skill-level">Advanced</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔧</div>
+        <div class="skill-name">Bash Scripting</div>
+        <div class="skill-level">Intermediate</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name">Networking</div>
+        <div class="skill-level">Intermediate</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🐙</div>
+        <div class="skill-name">Git & GitHub</div>
+        <div class="skill-level">Beginner</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:40%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🐳</div>
+        <div class="skill-name">Docker</div>
+        <div class="skill-level">Learning</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:25%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔒</div>
+        <div class="skill-name">SELinux</div>
+        <div class="skill-level">Intermediate</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:55%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="container">
+    <div class="section-label">// certifications</div>
+    <h2>Education & <span class="dim">Credentials</span></h2>
+    <div class="fade-in">
+      <div class="cert-card">
+        <div>
+          <div class="cert-title">Cloud Architect Training</div>
+          <div class="cert-org">NTI / ITIDA • 120 hours • Score: 94%</div>
+        </div>
+        <span class="cert-badge badge-done">Aug 2025</span>
+      </div>
+      <div class="cert-card">
+        <div>
+          <div class="cert-title">AWS Academy — Cloud Architecting</div>
+          <div class="cert-org">AWS Academy • 60 hours</div>
+        </div>
+        <span class="cert-badge badge-done">Aug 2025</span>
+      </div>
+      <div class="cert-card">
+        <div>
+          <div class="cert-title">AWS Academy — Cloud Foundations</div>
+          <div class="cert-org">AWS Academy • 20 hours</div>
+        </div>
+        <span class="cert-badge badge-done">Aug 2025</span>
+      </div>
+      <div class="cert-card">
+        <div>
+          <div class="cert-title">RH134 — Red Hat System Administration II</div>
+          <div class="cert-org">Mahara-Tech / ITI • 13 hours</div>
+        </div>
+        <span class="cert-badge badge-done">Jun 2026</span>
+      </div>
+      <div class="cert-card">
+        <div>
+          <div class="cert-title">RH124 — Red Hat System Administration I</div>
+          <div class="cert-org">Mahara-Tech / ITI • 9 hours</div>
+        </div>
+        <span class="cert-badge badge-done">Apr 2026</span>
+      </div>
+      <div class="cert-card">
+        <div>
+          <div class="cert-title">RHCSA — Red Hat Certified System Administrator (EX200)</div>
+          <div class="cert-org">Red Hat • RHEL 9</div>
+        </div>
+        <span class="cert-badge badge-progress">In Progress</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">// projects</div>
+    <h2>Featured <span class="dim">Work</span></h2>
+    <div class="fade-in">
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">linux-notes</div>
+          <a href="https://github.com/Ziadma7moud/linux-notes" class="project-link" target="_blank">github ↗</a>
+        </div>
+        <p class="project-desc">
+          Personal RHCSA EX200 study notes and hands-on labs covering file systems, user management,
+          storage, SELinux, networking, and more — all practiced on RHEL 9.
+        </p>
+        <div class="tags">
+          <span class="tag">Linux</span>
+          <span class="tag">RHEL 9</span>
+          <span class="tag">RHCSA</span>
+          <span class="tag">Documentation</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">devops-roadmap</div>
+          <a href="https://github.com/Ziadma7moud" class="project-link" target="_blank">github ↗</a>
+        </div>
+        <p class="project-desc">
+          A structured 12-month DevOps learning roadmap covering Linux, Networking, Git, Bash,
+          Python, AWS, Docker, Kubernetes, Terraform, and CI/CD pipelines.
+        </p>
+        <div class="tags">
+          <span class="tag">DevOps</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">AWS</span>
+          <span class="tag">Terraform</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">// contact</div>
+    <h2>Get in <span class="dim">Touch</span></h2>
+    <div class="contact-grid fade-in">
+      <a href="https://github.com/Ziadma7moud" class="contact-card" target="_blank">
+        <div class="contact-icon">🐙</div>
+        <div>
+          <div class="contact-label">github</div>
+          <div class="contact-value">Ziadma7moud</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/ziad-mahmoud-6452793b8" class="contact-card" target="_blank">
+        <div class="contact-icon">💼</div>
+        <div>
+          <div class="contact-label">linkedin</div>
+          <div class="contact-value">Ziad Mahmoud</div>
+        </div>
+      </a>
+      <a href="mailto:your@email.com" class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">email</div>
+          <div class="contact-value">your@email.com</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built by Ziad Mahmoud · 2025 · Egypt 🇪🇬</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
